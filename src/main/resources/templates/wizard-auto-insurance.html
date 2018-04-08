@@ -259,30 +259,23 @@
 
 <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 <script src="../static/js/jquery.validate.min.js" th:src="@{/js/jquery.validate.min.js}"></script>
-
 <script>
 
-    $.ajax({
-        type: 'GET',
-        url: '/api/v1/brands',
-        success: function (data) {
-            buildDropdown(
-                jQuery.parseJSON(data).brands,
-                $('#brands'),
-                'Selecione a Marca do Automóvel'
-            );
-        }
-    });
-
-	function buildDropdown(result, dropdown, emptyMessage) {
-		dropdown.html('');
-		dropdown.append('<option value="">' + emptyMessage + '</option>');
-		if (result != '') {
-			$.each(result, function (k, v) {
-				dropdown.append('<option value="' + v.name + '">' + v.name + '</option>');
-			});
+	$.ajax({
+		type: 'GET',
+		url: '/api/v1/brands',
+		success: function (data) {
+			var result = jQuery.parseJSON(data).brands;
+			var dropdown = $('#brands');
+			dropdown.html('');
+			dropdown.append('<option value="">Selecione a Marca do Automóvel</option>');
+			if (result != '') {
+				$.each(result, function (k, v) {
+					dropdown.append('<option value="' + v.brandId + '">' + v.brandName + '</option>');
+				});
+			}
 		}
-	}
+	});
 
 </script>
 
