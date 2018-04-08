@@ -23,8 +23,8 @@ public class RootController {
 
 	@RequestMapping(value = "/", method = { RequestMethod.GET })
 	public String processRootRedirect(final Model model) throws Exception {
-		logger.info("Redirecting to main page!");
-		return "wizard-book-room";
+		logger.info("RootController:/");
+		return "wizard-auto-insurance";
 	}
 
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET })	
@@ -33,3 +33,4 @@ public class RootController {
 		return "redirect:/";
 	}
 }
+
