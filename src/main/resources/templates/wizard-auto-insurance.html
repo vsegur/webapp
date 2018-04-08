@@ -268,7 +268,7 @@
 			var result = jQuery.parseJSON(data).brands;
 			var dropdown = $('#brands');
 			dropdown.html('');
-			dropdown.append('<option value="">Selecione a Marca do Automóvel</option>');
+			dropdown.append('<option value=""></option>');
 			if (result != '') {
 				$.each(result, function (k, v) {
 					dropdown.append('<option value="' + v.brandId + '">' + v.brandName + '</option>');
