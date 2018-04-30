@@ -1,9 +1,6 @@
 package br.com.vsegur.webapp.controller;
 
 import java.util.Collection;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.time.StopWatch;
 import org.codehaus.jettison.json.JSONArray;
@@ -20,29 +17,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.vsegur.webapp.model.VehBrand;
-import br.com.vsegur.webapp.service.VehAutoService;
 import br.com.vsegur.webapp.service.VehBrandService;
-import br.com.vsegur.webapp.service.VehModelService;
 
 /**
  * @author Jorge Takeshi Sato
  */
 @Controller
-public class VehAutoController {
+public class VehBrandController {
 
-    private final Logger logger = LoggerFactory.getLogger(VehAutoController.class);
-
-    @Autowired
-    protected HttpServletRequest httpServletRequest;
+    private final Logger logger = LoggerFactory.getLogger(VehBrandController.class);
 
     @Autowired
     protected VehBrandService vehBrandService;
-
-    @Autowired
-    protected VehModelService vehModelService;
-
-    @Autowired
-    protected VehAutoService vehAutoService;
 
     @RequestMapping(value = "/api/v1/brands", method = { RequestMethod.GET })
     public ResponseEntity<String> processRootRedirect(final Model model) throws Exception {
@@ -60,8 +46,8 @@ public class VehAutoController {
 
         for (final VehBrand element : listOfVehBrands) {
             final JSONObject jsonObject = new JSONObject();
-            jsonObject.put("brandId", element.getBrandId());
-            jsonObject.put("brandName", element.getBrandName());
+            jsonObject.put("id", element.getBrandId());
+            jsonObject.put("name", element.getBrandName());
             jsonArray.put(jsonObject);
         }
 

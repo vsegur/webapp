@@ -1,8 +1,7 @@
 package br.com.vsegur.webapp.service;
 
-import java.util.List;
-
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.hateoas.Resources;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,5 +15,8 @@ import br.com.vsegur.webapp.model.VehModel;
 public interface VehModelService {
 
 	@RequestMapping(method = RequestMethod.GET, path = "/search/findByBrandIdOrderByModelId", consumes = "application/json")
-	List<VehModel> findByBrandIdOrderByModelId(@RequestParam(value = "brandId") Integer brandId);
+	Resources<VehModel> findByBrandIdOrderByModelId(@RequestParam(value = "brandId") String brandId);
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/search/findByBrandIdOrderByModelName", consumes = "application/json")
+	Resources<VehModel> findByBrandIdOrderByModelName(@RequestParam(value = "brandId") String brandId);
 }
